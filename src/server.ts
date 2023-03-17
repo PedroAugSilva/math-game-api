@@ -14,7 +14,7 @@ app.register(fastifyIo, {
 
 app.get("/aa", () => {
   return {
-    message: "bem vindp",
+    message: "bem vindo",
   };
 });
 
