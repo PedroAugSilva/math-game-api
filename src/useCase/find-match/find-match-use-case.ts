@@ -48,13 +48,7 @@ export class FindMatchUseCase {
           name: randomEmptyMatches.name,
           amout_participants: 2,
           participant_in_match: {
-            create: [
-              { participant_id },
-              {
-                participant_id:
-                  randomEmptyMatches.participant_in_match[0].participant_id,
-              },
-            ],
+            create: [{ participant_id }],
           },
         },
       });
