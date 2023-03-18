@@ -4,7 +4,7 @@ export class FindMatchUseCase {
   async execute(participant_id: string) {
     const amountMatchs = await prisma.match.findMany({
       include: {
-        Participant_in_match: {
+        participant_in_match: {
           select: {
             participant_id: true,
             match_id: true,
@@ -20,7 +20,7 @@ export class FindMatchUseCase {
         data: {
           name: nameRoom,
           amout_participants: 1,
-          Participant_in_match: {
+          participant_in_match: {
             create: {
               participant_id: participant_id,
             },
@@ -30,12 +30,12 @@ export class FindMatchUseCase {
       return;
     }
 
-    // will return matches with a player missing
-
+    //  constant will return matches with a player missing
     const emptyMatches = amountMatchs.filter(
-      (match) => match.Participant_in_match.length === 1
+      (match) => match.participant_in_match.length === 1
     );
 
+    //join in game
     if (emptyMatches.length >= 1) {
       const randomEmptyMatches =
         emptyMatches[Math.floor(Math.random() * emptyMatches.length)];
@@ -47,23 +47,24 @@ export class FindMatchUseCase {
         data: {
           name: randomEmptyMatches.name,
           amout_participants: 2,
-          Participant_in_match: {
+          participant_in_match: {
             create: [
               { participant_id },
               {
                 participant_id:
-                  randomEmptyMatches.Participant_in_match[0].participant_id,
+                  randomEmptyMatches.participant_in_match[0].participant_id,
               },
             ],
           },
         },
       });
     } else {
+      //create game
       await prisma.match.create({
         data: {
           name: nameRoom,
           amout_participants: 1,
-          Participant_in_match: {
+          participant_in_match: {
             create: {
               participant_id: participant_id,
             },
