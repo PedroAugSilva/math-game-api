@@ -1,6 +1,6 @@
 import { FastifyRequest } from "fastify";
 import z from "zod";
-import { DestroyMatchUseCase } from "./destroy-match-use-case";
+// import { DestroyMatchUseCase } from "./destroy-match-use-case";
 
 export class DestroyMatchController {
   async handle(req: FastifyRequest) {
@@ -9,8 +9,8 @@ export class DestroyMatchController {
     });
     const { id } = matchParams.parse(req.params);
 
-    const destroyMatch = new DestroyMatchUseCase();
+    // const destroyMatch = new DestroyMatchUseCase();
 
-    await destroyMatch.execute(id);
+    // await destroyMatch.execute(id);
   }
 }

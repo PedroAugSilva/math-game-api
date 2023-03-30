@@ -11,6 +11,6 @@ export class CreateParticipantController {
 
     const createParticipant = new CreateParticipantUseCase();
 
-    return createParticipant.execute(name);
+    createParticipant.execute(name);
   }
 }

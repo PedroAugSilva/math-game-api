@@ -1,5 +1,5 @@
 import { FastifyRequest } from "fastify";
-import { FindMatchUseCase } from "./find-match-use-case";
+import FindMatchUseCase from "./find-match-use-case";
 import z from "zod";
 
 export class FindMatchController {
@@ -10,8 +10,8 @@ export class FindMatchController {
 
     const { participant_id } = matchParams.parse(req.params);
 
-    const findMatch = new FindMatchUseCase();
+    // const findMatch = new FindMatchUseCase();
 
-    return await findMatch.execute(participant_id);
+    // return await findMatch.execute(participant_id);
   }
 }
